@@ -6,13 +6,13 @@ const storage = multer.diskStorage({
     },
  filename: (req,file,cb) => {
     const uniqueSuffix = `${Date.now()}_${Math.round(Math.random() * 1E9)}`;
-    const ext = file.mimmetype.split('/')[1];
+    const ext = file.mimetype.split('/')[1];
     cb(null, `IMG_${uniqueSuffix}.${ext}`)
  }
 });
 
 const fileFilter = (req,file,cb)=>{
-    if(file.mimmetype.startsWith('image/')) {
+    if(file.mimetype.startsWith('image/')) {
         cb(null, true)
     }else{
         throw new Error('Invalid file format: Images only');
